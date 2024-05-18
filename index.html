@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binfiny</title>
+    <style>
+        /* Styles pour la bannière */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .banner {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .discord-button {
+            background-image: url('https://c.clc2l.com/t/d/i/discord-4OXyS2.png');
+            background-size: cover;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            outline: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .logo-icon {
+            background-image: url('https://tinypic.host/images/2024/05/16/Binfiny-1.png');
+            background-size: cover;
+            width: 200px;
+            height: 200px;
+            margin-left: -9px;
+            align-self: flex-start;
+        }
+
+        .binfiny-text {
+            font-family: 'Bagel Fat One', cursive;
+            font-size: 64px;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            font-weight: bold;
+        }
+
+        .logo-and-text {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .menu {
+            display: flex;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            flex-direction: column;
+            background-color: transparent;
+            padding: 0;
+            z-index: 1;
+            cursor: pointer;
+        }
+
+        .menu-icon {
+            width: 30px;
+            height: 3px;
+            background-color: #fff;
+            margin: 5px 0;
+        }
+
+        .side-menu {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #000;
+            border-right: 2px solid #fff;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .side-menu a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .side-menu a:hover {
+            color: #f1f1f1;
+        }
+
+        .side-menu .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        .carousel {
+            position: relative;
+            max-width: 90%;
+            margin-top: 20px;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: auto;
+            border: 2px solid #fff;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .carousel img.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .carousel .prev, .carousel .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        .carousel .next {
+            right: 10px;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .carousel .prev {
+            left: 10px;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .carousel .prev:hover, .carousel .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Media queries */
+        @media (max-width: 768px) {
+            .banner {
+                height: auto;
+                padding: 20px;
+            }
+
+            .logo-icon {
+                width: 100px;
+                height: 100px;
+                margin-left: 0;
+            }
+
+            .binfiny-text {
+                font-size: 32px;
+                letter-spacing: 4px;
+            }
+
+            .menu {
+                top: 5px;
+                left: 5px;
+            }
+
+            .discord-button {
+                top: 5px;
+                right: 5px;
+                width: 40px;
+                height: 40px;
+            }
+
+            .carousel {
+                max-width: 100%;
+            }
+
+            .carousel .prev, .carousel .next {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .side-menu a {
+                font-size: 20px;
+                padding: 8px 8px 8px 16px;
+            }
+
+            .side-menu .closebtn {
+                font-size: 30px;
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-and-text {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .logo-icon {
+                width: 80px;
+                height: 80px;
+            }
+
+            .binfiny-text {
+                font-size: 24px;
+                text-align: center;
+            }
+
+            .carousel .prev, .carousel .next {
+                padding: 8px;
+                font-size: 12px;
+            }
+
+            .side-menu a {
+                font-size: 18px;
+                padding: 8px 8px 8px 16px;
+            }
+
+            .side-menu .closebtn {
+                font-size: 24px;
+                right: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <div class="logo-and-text">
+            <div class="binfiny-text">BinFiny</div>
+            <div class="logo-icon"></div>
+        </div>
+        <div class="menu" onclick="openNav()">
+            <div class="menu-icon"></div>
+            <div class="menu-icon"></div>
+            <div class="menu-icon"></div>
+        </div>
+        <button class="discord-button" onclick="joinDiscordServer()"></button>
+
+        <!-- Carrousel d'images -->
+        <div class="carousel">
+            <img src="https://tinypic.host/images/2024/05/18/Photographie-Binfiny.png" id="carousel-image" class="active">
+            <a class="prev" onclick="changeImage(-1)">&#10094;</a>
+            <a class="next" onclick="changeImage(1)">&#10095;</a>
+        </div>
+    </div>
+
+    <div id="sideMenu" class="side-menu">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">Accueil</a>
+        <a href="https://discord.gg/ZCC8UBpR" target="_blank">Discord</a>
+        <a href="https://www.vinted.fr/member/200156770" target="_blank">Vinted</a>
+        <a href="mailto:Binfiny.pro@gmail.com">Support</a>
+        <a href="#" onclick="showAbout()">À propos</a>
+        <a href="#" onclick="showBinfiBotMessage()">BinfiBot</a>
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById("sideMenu").style.width = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("sideMenu").style.width = "0";
+        }
+
+        function joinDiscordServer() {
+            window.open('https://discord.gg/ZCC8UBpR', '_blank');
+        }
+
+        var images = [
+            'https://tinypic.host/images/2024/05/18/Photographie-Binfiny.png',
+            'https://tinypic.host/images/2024/05/18/C-G-Binfiny.png',
+            'https://tinypic.host/images/2024/05/18/Sale-1.png'
+        ];
+        var currentIndex = 0;
+
+        function changeImage(direction) {
+            var carouselImage = document.getElementById('carousel-image');
+            currentIndex += direction;
+            if (currentIndex < 0) {
+                currentIndex = images.length - 1;
+            } else if (currentIndex >= images.length) {
+                currentIndex = 0;
+            }
+            carouselImage.classList.remove('active');
+            setTimeout(() => {
+                carouselImage.src = images[currentIndex];
+                carouselImage.classList.add('active');
+            }, 100);
+        }
+
+        window.onload = () => {
+            document.getElementById('carousel-image').classList.add('active');
+        }
+
+        function showAbout() {
+            alert("Bienvenue sur BinFiny! Notre site propose une variété de services incluant la vente, la photographie et la conception graphique. Nous sommes ravis de vous présenter BinfiBot, une intelligence artificielle intégrée pour améliorer votre expérience utilisateur.");
+        }
+
+        function showBinfiBotMessage() {
+            alert("BinfiBot sera disponible ultérieurement.");
+        }
+    </script>
+</body>
+</html>
